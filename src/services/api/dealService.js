@@ -104,7 +104,7 @@ const dealService = {
         const failedRecords = response.results.filter(result => !result.success)
         
         if (failedRecords.length > 0) {
-          console.error(`Failed to create ${failedRecords.length} deals:`, JSON.stringify(failedRecords))
+          console.error(`Failed to create ${failedRecords.length} deals: ${JSON.stringify(failedRecords) }`)
           failedRecords.forEach(record => {
             record.errors?.forEach(error => {
               toast.error(`${error.fieldLabel}: ${error.message}`)
