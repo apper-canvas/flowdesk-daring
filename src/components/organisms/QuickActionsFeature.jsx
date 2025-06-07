@@ -51,10 +51,18 @@ const QuickActionsFeature = () => {
     }
   };
 
-  const handleQuickDeal = async (formData) => {
+const handleQuickDeal = async (formData) => {
     setSubmitting(true);
     try {
-      await dealService.create({ ...formData, stage: 'Lead', status: 'Open', probability: 25 });
+      // Ensure contactId is properly converted to integer for database
+      const dealData = { 
+        ...formData, 
+        stage: 'Lead', 
+        status: 'Open', 
+        probability: 25,
+        contactId: formData.contactId ? parseInt(formData.contactId) : null
+      };
+      await dealService.create(dealData);
       toast.success('Deal created successfully!');
       setActiveForm(null);
       // Reload deals for activity forms
@@ -67,14 +75,18 @@ const QuickActionsFeature = () => {
     }
   };
 
-  const handleQuickActivity = async (formData) => {
+const handleQuickActivity = async (formData) => {
     setSubmitting(true);
     try {
-      await activityService.create({
+      // Ensure contactId and dealId are properly converted to integers for database
+      const activityData = {
         ...formData,
         timestamp: new Date(),
-        completed: false
-      });
+        completed: false,
+        contactId: formData.contactId ? parseInt(formData.contactId) : null,
+        dealId: formData.dealId ? parseInt(formData.dealId) : null
+      };
+      await activityService.create(activityData);
       toast.success('Activity logged successfully!');
       setActiveForm(null);
     } catch (error) {

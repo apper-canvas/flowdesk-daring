@@ -9,6 +9,43 @@ const getApperClient = () => {
   })
 }
 
+// Helper function to validate and format deal data for database operations
+const validateAndFormatDealData = (dealData) => {
+  const formatted = {
+    Name: dealData.title || '',
+    title: dealData.title || '',
+    value: typeof dealData.value === 'number' ? dealData.value : (parseFloat(dealData.value) || 0),
+    stage: dealData.stage || 'Lead',
+    probability: typeof dealData.probability === 'number' ? Math.round(dealData.probability) : (parseInt(dealData.probability) || 0),
+    status: dealData.status || 'Open'
+  }
+
+  // Handle contact_id - must be integer for Lookup field
+  if (dealData.contactId !== undefined && dealData.contactId !== null && dealData.contactId !== '') {
+    const contactIdInt = parseInt(dealData.contactId)
+    if (!isNaN(contactIdInt)) {
+      formatted.contact_id = contactIdInt
+    } else {
+      formatted.contact_id = null
+    }
+  } else {
+    formatted.contact_id = null
+  }
+
+  // Handle expected_close_date - must be proper date format
+  if (dealData.expectedCloseDate) {
+    try {
+      formatted.expected_close_date = new Date(dealData.expectedCloseDate).toISOString().split('T')[0]
+    } catch (error) {
+      formatted.expected_close_date = null
+    }
+  } else {
+    formatted.expected_close_date = null
+  }
+
+  return formatted
+}
+
 const dealService = {
   async getAll() {
     try {
@@ -73,22 +110,14 @@ const dealService = {
     }
   },
 
-  async create(dealData) {
+async create(dealData) {
     try {
       const apperClient = getApperClient()
       
-      // Only include updateable fields and format data properly
+      // Only include updateable fields and format data properly with type validation
+      const formattedData = validateAndFormatDealData(dealData)
       const params = {
-        records: [{
-          Name: dealData.title || '',
-          title: dealData.title || '',
-          value: dealData.value || 0,
-          stage: dealData.stage || 'Lead',
-          probability: dealData.probability || 0,
-          expected_close_date: dealData.expectedCloseDate ? new Date(dealData.expectedCloseDate).toISOString().split('T')[0] : null,
-          status: dealData.status || 'Open',
-          contact_id: dealData.contactId || null
-        }]
+        records: [formattedData]
       }
       
       const response = await apperClient.createRecord('deal', params)
@@ -104,7 +133,7 @@ const dealService = {
         const failedRecords = response.results.filter(result => !result.success)
         
         if (failedRecords.length > 0) {
-          console.error(`Failed to create ${failedRecords.length} deals: ${JSON.stringify(failedRecords) }`)
+          console.error(`Failed to create ${failedRecords.length} deals:`, failedRecords)
           failedRecords.forEach(record => {
             record.errors?.forEach(error => {
               toast.error(`${error.fieldLabel}: ${error.message}`)
@@ -136,23 +165,15 @@ const dealService = {
     }
   },
 
-  async update(id, updateData) {
+async update(id, updateData) {
     try {
       const apperClient = getApperClient()
       
-      // Only include updateable fields and format data properly
+      // Only include updateable fields and format data properly with type validation
+      const formattedData = validateAndFormatDealData(updateData)
+      formattedData.Id = id // Add the ID for update operation
       const params = {
-        records: [{
-          Id: id,
-          Name: updateData.title || '',
-          title: updateData.title || '',
-          value: updateData.value || 0,
-          stage: updateData.stage || 'Lead',
-          probability: updateData.probability || 0,
-          expected_close_date: updateData.expectedCloseDate ? new Date(updateData.expectedCloseDate).toISOString().split('T')[0] : null,
-          status: updateData.status || 'Open',
-          contact_id: updateData.contactId || null
-        }]
+        records: [formattedData]
       }
       
       const response = await apperClient.updateRecord('deal', params)
@@ -193,7 +214,7 @@ const dealService = {
         }
       }
       
-      throw new Error('No successful records updated')
+      throw new Error('No successful updates')
     } catch (error) {
       console.error('Error updating deal:', error)
       throw error
