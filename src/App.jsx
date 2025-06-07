@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ToastContainer } from 'react-toastify'
-import HomePage from '@/components/pages/HomePage';
+import HomePage from './components/pages/HomePage';
 import { routes, routeArray } from './config/routes'
 import ApperIcon from './components/ApperIcon'
 
