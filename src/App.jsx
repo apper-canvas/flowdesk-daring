@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ToastContainer } from 'react-toastify'
+import HomePage from '@/components/pages/HomePage';
 import { routes, routeArray } from './config/routes'
 import ApperIcon from './components/ApperIcon'
 
@@ -8,7 +9,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('dashboard')
   const [darkMode, setDarkMode] = useState(false)
 
-  const currentRoute = routes[activeTab]
+const currentRoute = routes[activeTab] || { component: HomePage }; // Fallback to HomePage if route not found
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
