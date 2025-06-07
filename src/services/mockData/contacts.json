@@ -1,0 +1,72 @@
+[
+  {
+    "id": "1",
+    "name": "Sarah Chen",
+    "email": "sarah.chen@techstart.com",
+    "phone": "+1 (555) 123-4567",
+    "company": "TechStart Solutions",
+    "tags": ["enterprise", "decision-maker"],
+    "customFields": {
+      "industry": "Software",
+      "employees": "50-100"
+    },
+    "createdAt": "2024-01-15T10:30:00.000Z",
+    "updatedAt": "2024-01-20T14:45:00.000Z"
+  },
+  {
+    "id": "2",
+    "name": "Michael Rodriguez",
+    "email": "m.rodriguez@innovatecorp.com",
+    "phone": "+1 (555) 234-5678",
+    "company": "Innovate Corp",
+    "tags": ["hot-lead", "marketing"],
+    "customFields": {
+      "industry": "Marketing",
+      "budget": "$50k-100k"
+    },
+    "createdAt": "2024-01-18T09:15:00.000Z",
+    "updatedAt": "2024-01-22T11:20:00.000Z"
+  },
+  {
+    "id": "3",
+    "name": "Emma Thompson",
+    "email": "emma@growthventures.io",
+    "phone": "+1 (555) 345-6789",
+    "company": "Growth Ventures",
+    "tags": ["investor", "series-a"],
+    "customFields": {
+      "industry": "Venture Capital",
+      "focus": "B2B SaaS"
+    },
+    "createdAt": "2024-01-20T16:00:00.000Z",
+    "updatedAt": "2024-01-25T13:30:00.000Z"
+  },
+  {
+    "id": "4",
+    "name": "David Park",
+    "email": "david.park@designstudio.com",
+    "phone": "+1 (555) 456-7890",
+    "company": "Design Studio Pro",
+    "tags": ["creative", "referral"],
+    "customFields": {
+      "industry": "Design",
+      "specialization": "UX/UI"
+    },
+    "createdAt": "2024-01-22T12:45:00.000Z",
+    "updatedAt": "2024-01-26T10:15:00.000Z"
+  },
+  {
+    "id": "5",
+    "name": "Lisa Johnson",
+    "email": "lisa.johnson@retailplus.com",
+    "phone": "+1 (555) 567-8901",
+    "company": "Retail Plus",
+    "tags": ["e-commerce", "high-value"],
+    "customFields": {
+      "industry": "Retail",
+      "revenue": "$10M+"
+    },
+    "createdAt": "2024-01-25T08:20:00.000Z",
+    "updatedAt": "2024-01-28T15:50:00.000Z"
+  }
+]

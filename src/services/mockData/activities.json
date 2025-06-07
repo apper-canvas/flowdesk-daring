@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "type": "Call",
+    "description": "Initial discovery call with Sarah to understand their CRM needs and current pain points",
+    "contactId": "1",
+    "dealId": "1",
+    "timestamp": "2024-01-28T14:30:00.000Z",
+    "completed": true
+  },
+  {
+    "id": "2",
+    "type": "Email",
+    "description": "Sent proposal document and pricing breakdown for marketing automation solution",
+    "contactId": "2",
+    "dealId": "2",
+    "timestamp": "2024-01-27T10:15:00.000Z",
+    "completed": true
+  },
+  {
+    "id": "3",
+    "type": "Meeting",
+    "description": "Product demo scheduled for next week to showcase platform capabilities",
+    "contactId": "3",
+    "dealId": "3",
+    "timestamp": "2024-01-29T16:00:00.000Z",
+    "completed": false
+  },
+  {
+    "id": "4",
+    "type": "Note",
+    "description": "David mentioned they're also interested in ongoing maintenance and support packages",
+    "contactId": "4",
+    "dealId": "4",
+    "timestamp": "2024-01-26T11:45:00.000Z",
+    "completed": true
+  },
+  {
+    "id": "5",
+    "type": "Task",
+    "description": "Follow up with Lisa about technical requirements and integration needs",
+    "contactId": "5",
+    "dealId": "5",
+    "timestamp": "2024-01-30T09:00:00.000Z",
+    "completed": false
+  },
+  {
+    "id": "6",
+    "type": "Follow-up",
+    "description": "Schedule implementation kickoff meeting with TechStart team",
+    "contactId": "1",
+    "dealId": "1",
+    "timestamp": "2024-01-31T13:30:00.000Z",
+    "completed": false
+  },
+  {
+    "id": "7",
+    "type": "Email",
+    "description": "Sent thank you note and next steps after successful project completion",
+    "contactId": "4",
+    "dealId": "4",
+    "timestamp": "2024-01-25T17:20:00.000Z",
+    "completed": true
+  },
+  {
+    "id": "8",
+    "type": "Call",
+    "description": "Quick check-in call to discuss contract terms and timeline adjustments",
+    "contactId": "2",
+    "dealId": "2",
+    "timestamp": "2024-01-29T15:45:00.000Z",
+    "completed": true
+  }
+]
